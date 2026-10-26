@@ -165,7 +165,7 @@ svg.rrg .lab{font-size:13px; font-weight:700; paint-order:stroke;
   <p class="note">Where each DR market stands against the world, then where each underlying stock stands against its own market.</p>
 </header>
 <nav class="toc noexport"><a href="#countries">Countries vs MSCI World</a><a href="#stocks">Stocks vs home market</a>
-  <span class="tools"><button type="button" class="tbtn" id="btn-pdf">Save as PDF</button><button type="button" class="tbtn" id="btn-png">Save as PNG</button></span></nav>
+  <span class="tools"><button type="button" class="tbtn" id="btn-pdf">Save as PDF</button></span></nav>
 <div class="legend">
   <span><i class="dot q-lead"></i>Leading: outperforming and still gaining</span>
   <span><i class="dot q-weak"></i>Weakening: outperforming but losing momentum</span>
@@ -581,8 +581,7 @@ svg.rrg .lab{font-size:13px; font-weight:700; paint-order:stroke;
     // "exporting" lays the page out at a fixed desktop width with no scroll boxes, so
     // every viewer gets the same image; print keeps its own A4 layout and skips it
     btn.disabled = true; btn.textContent = "Preparing…"; light(); root.classList.add("exporting");
-    // the image library caps a canvas side at 16,384 px and silently shrinks past it,
-    // so pick the sharpest scale that keeps the long full-page image under that
+    // the image library caps a canvas side at 16,384 px and silently shrinks past it
     var ratio = Math.min(2, 16000 / node.scrollHeight, 16000 / node.scrollWidth);
     htmlToImage.toPng(node, {
       pixelRatio: ratio,
@@ -597,9 +596,6 @@ svg.rrg .lab{font-size:13px; font-weight:700; paint-order:stroke;
       setTimeout(function(){ btn.textContent = label; }, 3000);
     }).finally(function(){ restore(); btn.disabled = false; });
   }
-  document.getElementById("btn-png").addEventListener("click", function(){
-    png(document.querySelector(".wrap"), "DR-RRG-Dashboard-2026-10-23.png", this);
-  });
   document.getElementById("btn-graph-png").addEventListener("click", function(){
     png(document.getElementById("countries"), "DR-RRG-Countries-2026-10-23.png", this);
   });
