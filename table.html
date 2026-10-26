@@ -135,6 +135,28 @@ svg.rrg .lab{font-size:13px; font-weight:700; paint-order:stroke;
   color:var(--ink); text-decoration:none; font-size:12.5px}
 .toc a:hover{border-color:var(--head1)}
 .foot h3{font-size:13px; margin:14px 0 4px}
+.tools{display:flex; gap:6px; margin-left:auto}
+.tbtn{font:inherit; font-size:12.5px; font-weight:600; padding:5px 12px; border-radius:4px; cursor:pointer;
+  border:1px solid var(--head1); background:linear-gradient(var(--head1),var(--head2)); color:#fff}
+.tbtn:hover{filter:brightness(1.12)} .tbtn:disabled{opacity:.6; cursor:progress}
+.tbtn:focus-visible,.toc a:focus-visible{outline:2px solid var(--imp); outline-offset:2px}
+.tbtn.small{font-size:11.5px; padding:3px 10px; background:var(--chip-bg); color:var(--ink); border-color:var(--line)}
+.gtools{display:flex; justify-content:flex-end; margin:0 0 6px}
+@media (max-width:640px){ .tools{margin-left:0} }
+.exporting .chart,.exporting .tw{overflow:visible}
+.exporting .wrap{width:1000px; max-width:none}
+@media print{
+  @page{size:A4 portrait; margin:12mm}
+  *{-webkit-print-color-adjust:exact; print-color-adjust:exact}
+  .wrap{max-width:none; padding:0}
+  .noexport,.controls,.jumps{display:none !important}
+  .chart{overflow:visible; break-inside:avoid}
+  svg.rrg{min-width:0}
+  .tw{overflow:visible}
+  thead{display:table-header-group}
+  .ghead{break-after:avoid}
+  #stocks{break-before:page}
+}
 </style></head>
 <body><div class="wrap">
 <header>
@@ -142,7 +164,8 @@ svg.rrg .lab{font-size:13px; font-weight:700; paint-order:stroke;
   <p class="meta">MSCI World to 2026-10-23 · home-market closes to 2026-10-23 · built 2026-10-26 15:59</p>
   <p class="note">Where each DR market stands against the world, then where each underlying stock stands against its own market.</p>
 </header>
-<nav class="toc"><a href="#countries">Countries vs MSCI World</a><a href="#stocks">Stocks vs home market</a></nav>
+<nav class="toc noexport"><a href="#countries">Countries vs MSCI World</a><a href="#stocks">Stocks vs home market</a>
+  <span class="tools"><button type="button" class="tbtn" id="btn-pdf">Save as PDF</button><button type="button" class="tbtn" id="btn-png">Save as PNG</button></span></nav>
 <div class="legend">
   <span><i class="dot q-lead"></i>Leading: outperforming and still gaining</span>
   <span><i class="dot q-weak"></i>Weakening: outperforming but losing momentum</span>
@@ -153,6 +176,7 @@ svg.rrg .lab{font-size:13px; font-weight:700; paint-order:stroke;
 <section class="sec" id="countries">
   <h2>Countries vs MSCI World</h2>
   <p class="meta">9 markets with DRs on SET · each main index in US dollars against the MSCI World Index · <span class="q-lead-t">Leading 1</span> · <span class="q-weak-t">Weakening 1</span> · <span class="q-lagg-t">Lagging 3</span> · <span class="q-impr-t">Improving 4</span></p>
+  <div class="gtools noexport"><button type="button" class="tbtn small" id="btn-graph-png">Save graph as PNG</button></div>
   <div class="chart" id="country-graph"><svg class="rrg" viewBox="0 0 620 480" role="img" aria-label="Relative rotation graph of DR markets against MSCI World"><rect x="329.0" y="14.0" width="277.0" height="210.0" class="b-lead"/><rect x="329.0" y="224.0" width="277.0" height="210.0" class="b-weak"/><rect x="52.0" y="224.0" width="277.0" height="210.0" class="b-lag"/><rect x="52.0" y="14.0" width="277.0" height="210.0" class="b-imp"/><line x1="54.1" y1="14" x2="54.1" y2="434" class="grid"/><text x="54.1" y="450" class="tick" text-anchor="middle">97</text><line x1="145.7" y1="14" x2="145.7" y2="434" class="grid"/><text x="145.7" y="450" class="tick" text-anchor="middle">98</text><line x1="237.4" y1="14" x2="237.4" y2="434" class="grid"/><text x="237.4" y="450" class="tick" text-anchor="middle">99</text><line x1="329.0" y1="14" x2="329.0" y2="434" class="grid"/><text x="329.0" y="450" class="tick" text-anchor="middle">100</text><line x1="420.6" y1="14" x2="420.6" y2="434" class="grid"/><text x="420.6" y="450" class="tick" text-anchor="middle">101</text><line x1="512.3" y1="14" x2="512.3" y2="434" class="grid"/><text x="512.3" y="450" class="tick" text-anchor="middle">102</text><line x1="603.9" y1="14" x2="603.9" y2="434" class="grid"/><text x="603.9" y="450" class="tick" text-anchor="middle">103</text><line x1="52" y1="422.4" x2="606" y2="422.4" class="grid"/><text x="45" y="426.4" class="tick" text-anchor="end">97</text><line x1="52" y1="356.3" x2="606" y2="356.3" class="grid"/><text x="45" y="360.3" class="tick" text-anchor="end">98</text><line x1="52" y1="290.1" x2="606" y2="290.1" class="grid"/><text x="45" y="294.1" class="tick" text-anchor="end">99</text><line x1="52" y1="224.0" x2="606" y2="224.0" class="grid"/><text x="45" y="228.0" class="tick" text-anchor="end">100</text><line x1="52" y1="157.9" x2="606" y2="157.9" class="grid"/><text x="45" y="161.9" class="tick" text-anchor="end">101</text><line x1="52" y1="91.7" x2="606" y2="91.7" class="grid"/><text x="45" y="95.7" class="tick" text-anchor="end">102</text><line x1="52" y1="25.6" x2="606" y2="25.6" class="grid"/><text x="45" y="29.6" class="tick" text-anchor="end">103</text><line x1="329.0" y1="14" x2="329.0" y2="434" class="axis"/><line x1="52" y1="224.0" x2="606" y2="224.0" class="axis"/><rect x="52" y="14" width="554" height="420" class="frame"/><text x="598" y="32" class="qlab" text-anchor="end">LEADING</text><text x="598" y="425" class="qlab" text-anchor="end">WEAKENING</text><text x="60" y="425" class="qlab" text-anchor="start">LAGGING</text><text x="60" y="32" class="qlab" text-anchor="start">IMPROVING</text><text x="329.0" y="472" class="axt" text-anchor="middle">RS-Ratio: relative strength vs MSCI World →</text><text transform="translate(15 224.0) rotate(-90)" class="axt" text-anchor="middle">RS-Momentum →</text><polyline points="286.9,230.9 380.0,151.3 425.0,105.6" class="tl s-c8"/><circle cx="286.9" cy="230.9" r="2.6" class="td f-c8"/><circle cx="380.0" cy="151.3" r="2.6" class="td f-c8"/><polyline points="432.4,332.4 423.2,334.4 405.7,331.5" class="tl s-c2"/><circle cx="432.4" cy="332.4" r="2.6" class="td f-c2"/><circle cx="423.2" cy="334.4" r="2.6" class="td f-c2"/><polyline points="242.1,120.2 251.9,111.0 254.1,128.5" class="tl s-c9"/><circle cx="242.1" cy="120.2" r="2.6" class="td f-c9"/><circle cx="251.9" cy="111.0" r="2.6" class="td f-c9"/><polyline points="165.4,195.8 201.2,55.9 227.9,46.0" class="tl s-c7"/><circle cx="165.4" cy="195.8" r="2.6" class="td f-c7"/><circle cx="201.2" cy="55.9" r="2.6" class="td f-c7"/><polyline points="104.6,354.0 104.0,286.1 177.5,204.8" class="tl s-c3"/><circle cx="104.6" cy="354.0" r="2.6" class="td f-c3"/><circle cx="104.0" cy="286.1" r="2.6" class="td f-c3"/><polyline points="136.7,201.0 94.3,240.1 133.7,182.7" class="tl s-c4"/><circle cx="136.7" cy="201.0" r="2.6" class="td f-c4"/><circle cx="94.3" cy="240.1" r="2.6" class="td f-c4"/><polyline points="310.9,375.8 316.9,358.3 315.9,355.1" class="tl s-c6"/><circle cx="310.9" cy="375.8" r="2.6" class="td f-c6"/><circle cx="316.9" cy="358.3" r="2.6" class="td f-c6"/><polyline points="337.7,348.2 263.2,364.8 278.1,347.5" class="tl s-c1"/><circle cx="337.7" cy="348.2" r="2.6" class="td f-c1"/><circle cx="263.2" cy="364.8" r="2.6" class="td f-c1"/><polyline points="256.2,382.5 215.5,377.2 250.0,340.8" class="tl s-c5"/><circle cx="256.2" cy="382.5" r="2.6" class="td f-c5"/><circle cx="215.5" cy="377.2" r="2.6" class="td f-c5"/><g><title>Vietnam (VN-Index): Leading · RS-Ratio 101.05 · RS-Momentum 101.79 · to 2026-10-23</title><circle cx="425.0" cy="105.6" r="6.5" class="hd f-c8"/><text x="435.0" y="109.6" class="lab f-c8" text-anchor="start">Vietnam</text></g><g><title>US · S&amp;P 500 (S&amp;P 500 (SPX)): Weakening · RS-Ratio 100.84 · RS-Momentum 98.37 · to 2026-10-23</title><circle cx="405.7" cy="331.5" r="6.5" class="hd f-c2"/><text x="415.7" y="335.5" class="lab f-c2" text-anchor="start">US · S&amp;P 500</text></g><g><title>Europe (STOXX Europe 600 (SXXP)): Improving · RS-Ratio 99.18 · RS-Momentum 101.44 · to 2026-10-23</title><circle cx="254.1" cy="128.5" r="6.5" class="hd f-c9"/><text x="264.1" y="132.5" class="lab f-c9" text-anchor="start">Europe</text></g><g><title>Singapore (Straits Times (STI)): Improving · RS-Ratio 98.90 · RS-Momentum 102.69 · to 2026-10-23</title><circle cx="227.9" cy="46.0" r="6.5" class="hd f-c7"/><text x="237.9" y="50.0" class="lab f-c7" text-anchor="start">Singapore</text></g><g><title>China (SSE Composite): Improving · RS-Ratio 98.35 · RS-Momentum 100.29 · to 2026-10-23</title><circle cx="177.5" cy="204.8" r="6.5" class="hd f-c3"/><text x="187.5" y="208.8" class="lab f-c3" text-anchor="start">China</text></g><g><title>Hong Kong (Hang Seng (HSI)): Improving · RS-Ratio 97.87 · RS-Momentum 100.62 · to 2026-10-23</title><circle cx="133.7" cy="182.7" r="6.5" class="hd f-c4"/><text x="143.7" y="186.7" class="lab f-c4" text-anchor="start">Hong Kong</text></g><g><title>Taiwan (TAIEX): Lagging · RS-Ratio 99.86 · RS-Momentum 98.02 · to 2026-10-22</title><circle cx="315.9" cy="355.1" r="6.5" class="hd f-c6"/><text x="325.9" y="359.1" class="lab f-c6" text-anchor="start">Taiwan</text></g><g><title>US · Nasdaq (Nasdaq 100 (NDX)): Lagging · RS-Ratio 99.44 · RS-Momentum 98.13 · to 2026-10-23</title><circle cx="278.1" cy="347.5" r="6.5" class="hd f-c1"/><text x="287.1" y="339.5" class="lab f-c1" text-anchor="start">US · Nasdaq</text></g><g><title>Japan (Nikkei 225 (NKY)): Lagging · RS-Ratio 99.14 · RS-Momentum 98.23 · to 2026-10-23</title><circle cx="250.0" cy="340.8" r="6.5" class="hd f-c5"/><text x="240.0" y="344.8" class="lab f-c5" text-anchor="end">Japan</text></g></svg></div>
   <p class="note" style="margin-top:6px">Large dot = latest close (2026-10-23); the line runs back through the previous 2 sessions. Hover a dot for its values.</p>
   <div class="keys"><div><i class="dot" style="background:var(--c8)"></i> <b>Vietnam</b>: VN-Index · 17 DRs · <span class="q-lead-t">Leading</span></div><div><i class="dot" style="background:var(--c2)"></i> <b>US · S&amp;P 500</b>: S&amp;P 500 (SPX) · 132 DRs · <span class="q-weak-t">Weakening</span></div><div><i class="dot" style="background:var(--c9)"></i> <b>Europe</b>: STOXX Europe 600 (SXXP) · 11 DRs · <span class="q-impr-t">Improving</span></div><div><i class="dot" style="background:var(--c7)"></i> <b>Singapore</b>: Straits Times (STI) · 12 DRs · <span class="q-impr-t">Improving</span></div><div><i class="dot" style="background:var(--c3)"></i> <b>China</b>: SSE Composite · 20 DRs · <span class="q-impr-t">Improving</span></div><div><i class="dot" style="background:var(--c4)"></i> <b>Hong Kong</b>: Hang Seng (HSI) · 135 DRs · <span class="q-impr-t">Improving</span></div><div><i class="dot" style="background:var(--c6)"></i> <b>Taiwan</b>: TAIEX · 3 DRs · <span class="q-lagg-t">Lagging</span></div><div><i class="dot" style="background:var(--c1)"></i> <b>US · Nasdaq</b>: Nasdaq 100 (NDX) · 208 DRs · <span class="q-lagg-t">Lagging</span></div><div><i class="dot" style="background:var(--c5)"></i> <b>Japan</b>: Nikkei 225 (NKY) · 43 DRs · <span class="q-lagg-t">Lagging</span></div></div>
@@ -536,6 +560,48 @@ svg.rrg .lab{font-size:13px; font-weight:700; paint-order:stroke;
         rs.forEach(function(r){ b.appendChild(r); });
       });
     });
+  });
+})();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.js"></script>
+<script>
+(function(){
+  // Exports always use the light palette (it prints and pastes into slides better),
+  // then put back whatever theme the viewer had.
+  var root = document.documentElement, saved = null;
+  function light(){ saved = root.getAttribute("data-theme"); root.setAttribute("data-theme", "light"); }
+  function restore(){ root.classList.remove("exporting"); if (saved === null) root.removeAttribute("data-theme"); else root.setAttribute("data-theme", saved); }
+  window.addEventListener("beforeprint", light);
+  window.addEventListener("afterprint", restore);
+  document.getElementById("btn-pdf").addEventListener("click", function(){ window.print(); });
+
+  function png(node, name, btn){
+    var label = btn.textContent;
+    if (!window.htmlToImage){ btn.textContent = "Image tool didn't load - refresh the page"; return; }
+    // "exporting" lays the page out at a fixed desktop width with no scroll boxes, so
+    // every viewer gets the same image; print keeps its own A4 layout and skips it
+    btn.disabled = true; btn.textContent = "Preparing…"; light(); root.classList.add("exporting");
+    // the image library caps a canvas side at 16,384 px and silently shrinks past it,
+    // so pick the sharpest scale that keeps the long full-page image under that
+    var ratio = Math.min(2, 16000 / node.scrollHeight, 16000 / node.scrollWidth);
+    htmlToImage.toPng(node, {
+      pixelRatio: ratio,
+      backgroundColor: getComputedStyle(document.body).backgroundColor,
+      filter: function(n){ return !(n.classList && n.classList.contains("noexport")); }
+    }).then(function(url){
+      var a = document.createElement("a"); a.href = url; a.download = name;
+      document.body.appendChild(a); a.click(); a.remove();
+      btn.textContent = label;
+    }).catch(function(err){
+      console.error(err); btn.textContent = "Couldn't save - try again";
+      setTimeout(function(){ btn.textContent = label; }, 3000);
+    }).finally(function(){ restore(); btn.disabled = false; });
+  }
+  document.getElementById("btn-png").addEventListener("click", function(){
+    png(document.querySelector(".wrap"), "DR-RRG-Dashboard-2026-10-23.png", this);
+  });
+  document.getElementById("btn-graph-png").addEventListener("click", function(){
+    png(document.getElementById("countries"), "DR-RRG-Countries-2026-10-23.png", this);
   });
 })();
 </script>
